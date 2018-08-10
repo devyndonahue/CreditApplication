@@ -1,0 +1,146 @@
+package com.callaway.storefront.forms;
+
+public class FinancialDetailsForm {
+
+    private String applicationId;
+
+    public String getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(final String applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    private String nameOfBank;
+    private String fullAccount;
+    private String name;
+	private String phone;
+    private String email;
+    private String title;
+	private String contactPerson;
+	private String accountType;
+	private String lender;
+	private String dateOriginated;
+	private String address;
+	private String city;
+
+
+	/**
+	 * @return the phone
+	 */
+	public String getPhone()
+	{
+		return phone;
+	}
+
+	/**
+	 * @param phone
+	 *           the phone to set
+	 */
+	public void setPhone(final String phone)
+	{
+		this.phone = phone;
+	}
+
+	public String getNameOfBank()
+	{
+        return nameOfBank;
+    }
+
+    public void setNameOfBank(final String nameOfBank) {
+        this.nameOfBank = nameOfBank;
+    }
+
+    public String getFullAccount() {
+        return fullAccount;
+    }
+
+    public void setFullAccount(final String fullAccount) {
+        this.fullAccount = fullAccount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(final String title) {
+        this.title = title;
+    }
+
+	public String getContactPerson()
+	{
+		return contactPerson;
+	}
+
+	public void setContactPerson(final String contactPerson)
+	{
+		this.contactPerson = contactPerson;
+	}
+
+	public String getAccountType()
+	{
+		return accountType;
+	}
+
+	public void setAccountType(final String accountType)
+	{
+		this.accountType = accountType;
+	}
+
+	public String getLender()
+	{
+		return lender;
+	}
+
+	public void setLender(final String lender)
+	{
+		this.lender = lender;
+	}
+
+	public String getDateOriginated()
+	{
+		return dateOriginated;
+	}
+
+	public void setDateOriginated(final String dateOriginated)
+	{
+		this.dateOriginated = dateOriginated;
+	}
+
+	public String getAddress()
+	{
+		return address;
+	}
+
+	public void setAddress(final String address)
+	{
+		this.address = address;
+	}
+
+	public String getCity()
+	{
+		return city;
+	}
+
+	public void setCity(final String city)
+	{
+		this.city = city;
+	}
+}
