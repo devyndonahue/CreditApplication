@@ -1,0 +1,489 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement" %>
+<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+<style>
+    
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function(){
+       $("input").blur(function(){
+             var value= $('#'+this.id+'');
+             var errorSpan=$('#'+this.id+'Error');
+             if(!value.val()){
+                errorSpan.addClass("show");
+             }
+             else{
+                errorSpan.removeClass("show");
+             }
+          });
+
+          $("#anotherBank").click(function(){
+            if(!($(".bank2").css('display') == 'block')){
+                $(".bank2").show()
+            }
+            else if(($(".bank2").css('display') == 'block') && !($(".bank3").css('display') == 'block')){
+                $(".bank3").show()
+            }
+            else if(($(".bank2").css('display') == 'block') && ($(".bank3").css('display') == 'block') && !($(".bank4").css('display') == 'block')){
+                $(".bank4").show()
+            }
+            if(($(".bank2").css('display') == 'block') && ($(".bank3").css('display') == 'block') && ($(".bank4").css('display') == 'block')){
+                $("#anotherBank").hide()
+            }
+
+          });
+          $("#removeBank2").click(function(){
+            $(".bank2").hide();
+            $("#anotherBank").show();
+          });
+          $("#removeBank3").click(function(){
+            $(".bank3").hide();
+            $("#anotherBank").show();
+          });
+          $("#removeBank4").click(function(){
+            $(".bank4").hide();
+            $("#anotherBank").show();
+          });
+    });
+
+</script>
+<c:url value="/creditapplicationsf/financialDetails" var="financialDetails" ></c:url>
+<form:form method="post" id="financialDetailsForm1" commandName="financialDetailsForm" action="${financialDetails}">
+<form:input class="" type="hidden"  path="applicationId" Value="${applicationId}"/>
+
+<nav class = "page_margin">
+
+<div id="FLEX">
+<span>
+<div class = "icon-screen-smartphone"> </div>
+<div class= " phone_credit"><spring:theme code="account.helpnumber"/></div></span>
+<span> <a href = "" style = "letter-spacing: 2px"><spring:theme code="account.logout"/></a></span>
+
+</div>
+
+ </nav>
+<img src="https://cgmediacontentus.blob.core.windows.net:443/email-notifications/Images/Callaway-Logo-bgWhite.png" style = "margin-left:auto; margin-right: auto; margin-bottom: 15px;  display: block"/> 
+<div class="breadcrumb-section">
+		<ol class="breadcrumb">
+	<li>
+		<a href=""><spring:theme code="account.home"/></a>
+	</li>
+
+	<li>
+					<a href=""><spring:theme code="account.creditapplication"/></a>
+				</li>
+			<li class="active"><spring:theme code="account.bankingbreadcrumb"/></li>
+			</ol>
+</div>
+<div class = "page_margin">
+        
+        <div class="button-grp">
+            <button class="back_button" type="submit"><spring:theme code="account.back"/></button>
+            <button class="next_button" type="submit"><spring:theme code="account.continue"/></button>
+        </div>
+             <div class = "dividers">
+                <div style = "display: inline-block;">
+                    <span class="step-label" ><spring:theme code="account.banking"/></span>
+                    <span class = "icon-info"></span>
+                </div>
+                <div style = "display: inline-block; float: right; margin-top: 5px">
+                    <a href = "" id="anotherBank"> <spring:theme code="account.addanotherbank"/></a>
+                </div>
+            </div>
+            <div style = " margin-bottom: 25px"><b><spring:theme code="account.listaccounts"/> </b></div>
+            <div>
+            <span class = "bill_to">
+      
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.nameofbank"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="nameOfBank" /></span>
+                        </p>
+                    </div>
+                    <div>
+                  
+                        <p class=" float-left">
+                            <span><spring:theme code="account.phonebox"/></span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                              <span><form:input class="long-box" type="text"  path="phone" /></span> 
+                                
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span><spring:theme code="account.accounttype"/></span>
+                        </p>
+                        <p class = "align-right">
+                            <span>
+                           <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                            </span>
+                        </p>
+                    </div>
+                </span>
+                
+                <span class = "ship_to">
+                    <div class="">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.contactperson"/></span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="contactPerson"/></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.fullaccountnumber"/></span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="fullAccount" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.accounttype"/></span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div> 
+                </span> 
+                </div> 
+                <div class = " bank2" style = "border-top: 1px solid #d7d7d7">
+            <span class = "bill_to" >
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.nameofbank"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="nameOfBank" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span><spring:theme code="account.phonebox"/></span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                         <span><form:input class="long-box" type="text"  path="phone" /></span>
+                         
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span><spring:theme code="account.accounttype"/></span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div>
+                </span>
+                
+                <span class = "ship_to">
+                    <div class="">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.contactperson"/></span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="contactPerson"/></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.fullaccountnumber"/></span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="fullAccount" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Account Type</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div>
+                </span> 
+                </div>
+                <div class = " bank3" style = "border-top: 1px solid #d7d7d7">
+            <span class = "bill_to">
+                    <div >
+                        <p class=" float-left">
+                            <span>Name of Bank</span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="nameOfBank" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span>Phone #</span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="phone" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span>Account Type</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div>
+                </span>
+                
+                <span class = "ship_to">
+                    <div class="">
+                        <p class=" float-left">
+                            <span>Contact Person</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="contactPerson"/></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Full Account #</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="fullAccount" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Account Type</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div>
+                </span> 
+                </div>
+                <div class = " bank4" style = "border-top: 1px solid #d7d7d7"">
+            <span class = "bill_to">
+                    <div >
+                        <p class=" float-left">
+                            <span>Name of Bank</span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="nameOfBank" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span>Phone #</span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                             <span><form:input class="long-box" type="text"  path="phone" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span>Account Type</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div>
+                </span>
+                
+                <span class = "ship_to">
+                    <div class="">
+                        <p class=" float-left">
+                            <span>Contact Person</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="contactPerson"/></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Full Account #</span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="fullAccount" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Account Type</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="accountType" /></span>
+                        </p>
+                    </div>
+                </span> 
+                </div>
+                 <div>
+                        I (we) hereby certify that the attached bank statements are true and accurate depictions of the financial accounts(s) of the Company as of their date and acknowledge that Callaway will rely on these bank statements and this certification in its decision to extend credit to the Company.<br><br>
+                        Please provide the last 3 bank statements for each of the accounts listed.
+
+                    </div>
+                     
+        
+                     <div class = "dividers">
+                                        <p class="step-label" >Financials</p>
+                                </div>
+				<span class = "bill_to">
+                    <div >
+                        <p class=" float-left">
+                            <span>Lender</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="lender" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span>Date Originated</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="dateOriginated" /></span>
+                        </p>
+                    </div> 
+                </span>
+                
+                <span class = "ship_to">
+                    <div class="">
+                        <p class=" float-left">
+                            <span>Full Account #</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="name"/></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Amount</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="address" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span>Balance</span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="city" /></span>
+                        </p>
+                    </div> 
+                </span>  
+            
+             <div class = "dividers">
+                <p class="step-label" >Authorization of Financial Information</p>
+            </div>
+            <div>
+                <p>
+                    <b>MUST SIGN THIS SECTION</b><br>
+                    I authorize the above institutions to release all financial information regarding checking and saving accounts and outstanding loans. If the account(s) is placed with an attorney for collection, then debtor shall be liable for reasonable attorney's fees and all reasonable collection costs incurred in the collection of said indebtedness. Applicant further agrees to pay finance charges on all amounts past due at the rate of 1 1/2 percent per month until paid. The person executing this agreement has authority to bind the customer and is authorized by the customer to enter into the credit application terms and conditions.<br><br>
+
+                    <b>I (WE) CERTIFY THAT THE ABOVE INFORMATION IS TRUE AND CORRECT, AND THAT WE CAN AND WILL COMPLY WITH YOUR TERMS. WE ALSO CONSENT TO THE JURISDICTION AND VENUE OF THE COURTS OF THE STATE OF CALIFORNIA, COUNTY OF SAN DIEGO, AND THE UNITED STATES DISTRICT COURT FOR THE SOURTHERN DISTRICT OF CALIFORNIA.</b>
+                </p>
+            </div>
+            <div style = "padding-top: 25px">
+                <span class = "credit_form_1" style = "margin-right: 4%">
+                    <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.name"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="name" /></span>
+                         </p>
+                 </div>
+                 </span>
+                 <span class = "credit_form_1" style = "margin-right: 4%">
+                    <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.email"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"   path="name" /></span>
+                         </p>
+                 </div>
+                 </span>
+                 <span class = "credit_form_1">
+                    <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.title"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="name" /></span>
+                         </p>
+                 </div>
+                 </span>
+                 </div>
+                 <div>
+             <span> <b>Please sign & date after printing</b></span>
+            <div>
+            <span class = "signature"  >
+            <div style = "padding-top: 50px">
+                        <p class=" float-left" >
+                            <span>&nbsp;</span>
+                        </p>
+                        <p class = "align-right" style = "border-top: 1px solid #d7d7d7; padding-top: 5px">
+                            <span>Signature</span>
+                        </p>
+                    </div>
+            </span>
+            <span class = "date">
+            <div style = "padding-top: 51px">
+                        <p class=" float-left" >
+                            <span>&nbsp;</span>
+                        </p>
+                        <p class = "align-right" style = "border-top: 1px solid #d7d7d7; padding-top: 5px">
+                            <span>Date</span>
+                        </p>
+                    </div>
+            </span>
+            </div>
+            
+            
+            
+      </div>
+        <div class="button-grp">
+            <button class="back_button" type="submit">Back</button>
+            <button class="next_button" type="submit" >Continue</button>
+        </div>
+
+
+    </div>
+ <footer>
+ <div class = "align-footer">
+ <p class = "callaway_header"> CALLAWAY GOLF </p>
+ <p class = "credit_email">credit.application@callawaygolf.com </p>
+ <br>
+ <p> 2180 Rutherford Road <br>
+ Carlsbad, CA 92008 USA 1.800.588.9836 </p>
+ <br>
+ <span class = "icon-screen-smartphone" ></span>
+ <p class = "phone_numbers">760-931-1771 or 800-228-2767</p>
+ <p >Fax: 760-804-4292 </p>
+ </div>
+</footer>
+
+</form:form>
