@@ -1,0 +1,539 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement" %>
+<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<c:url value="/creditapplicationsf/businessInfoForm" var="businessInformation" ></c:url>
+<form:form method="post" id="businessInformationForm1" commandName="businessInformationForm" action="${businessInformation}">
+Application Id   <form:input class="" type="text"  path="applicationId" Value="1234"/>
+
+<nav class = "page_margin">
+
+<div id="FLEX">
+<span>
+<div class = "icon-screen-smartphone"> </div>
+<div class= " phone_credit"><spring:theme code="account.helpnumber"/></div></span>
+<span> <a href = "" style = "letter-spacing: 2px"><spring:theme code="account.logout"/></a></span>
+
+</div>
+
+ </nav>
+<img src="https://cgmediacontentus.blob.core.windows.net:443/email-notifications/Images/Callaway-Logo-bgWhite.png" style = "margin-left:auto; margin-right: auto; margin-bottom: 15px;  display: block"/> 
+<div class="breadcrumb-section">
+		<ol class="breadcrumb">
+	<li>
+		<a href=""><spring:theme code="account.home"/></a>
+	</li>
+
+	<li>
+					<a href=""><spring:theme code="account.creditapplication"/></a>
+				</li>
+			<li class="active"><spring:theme code="account.businessform"/></li>
+			</ol>
+</div>
+<div class = "page_margin">
+    <div class="creditApplication-container">
+        <div class="creditApplication-packet company-details">
+        
+        <div class="button-grp">
+            <button class="back_button" type="submit"><spring:theme code="account.back"/></button>
+            <button class="next_button" type="submit"><spring:theme code="account.continue"/></button>
+        </div>
+             <div class = "dividers">
+                    <p class="step-label" ><spring:theme code="account.yourcompany"/></p>
+            </div>
+            <div >
+            <span class = "bill_to">
+                    <p ><b><spring:theme code="account.billto"/></b></p>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.legalbusinessname"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="legalBusinessName" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span><spring:theme code="account.doingbusinessas"/></span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="doingBusinessAs" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span><spring:theme code="account.address"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="address" /></span>
+                        </p>
+                    </div>
+                    <span style = "whitespace: nowrap">
+                    <div style = "display: inline-block">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.citybox"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "city">
+                            <span><form:input class="address-box" type="text"  path="city" /></span>
+                        </p>
+                    </div>
+
+                    <div class="" style = "display: inline-block">
+                        <p class="cmpny-label" style = "display: inline-block">
+                            <span><spring:theme code="account.state"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "state">
+                            <span> 
+                            
+                            <div id="type_select" class="payment-profile-select custom-select hideExport" style = "display: inline-block">
+	                        	<select name="order_types">
+	                        	<option value="All">Select...</option>
+	                        	  <option value="Alabama">AL</option>
+	                        	  <option value="Alaska">AK</option>
+								  <option value="Arizona">AZ</option>
+								  <option value="Arkansas">AR</option>
+								  <option value="California">CA</option>
+								  <option value="Colorado">CO</option>
+								  <option value="Connecticut">CT</option>
+								  <option value="Delaware">DE</option>
+								  <option value="Florida">FL</option>
+								  <option value="Georgia">GA</option>
+								  <option value="Hawaii">HI</option>
+								  <option value="Idaho">ID</option>
+								  <option value="Illinois">IL</option>
+								  <option value="Indiana">IN</option>
+								  <option value="Iowa">IA</option>
+								  <option value="Kansas">KS</option>
+								  <option value="Kentucky">KY</option>
+								  <option value="Louisiana">LA</option>
+								  <option value="Maine">ME</option>
+								  <option value="Maryland">MD</option>
+								  <option value="Massachussets">MA</option>
+								  <option value="Michigan">MI</option>
+								  <option value="Minnesota">MN</option>
+								  <option value="Mississippi">MS</option>
+								  <option value="Missouri">MO</option>
+								  <option value="Montana">MT</option>
+								  <option value="Nebraska">NE</option>
+								  <option value="Nevada">NV</option>
+								  <option value="New Hampshire">NH</option>
+								  <option value="New Jersey">NJ</option>
+								  <option value="New Mexico">NM</option>
+								  <option value="New York">NY</option>
+								  <option value="North Carolina">NC</option>
+								  <option value="North Dakota">ND</option>
+								  <option value="Ohio">OH</option>
+								  <option value="Oklahoma">OK</option>
+								  <option value="Oregon">OR</option>
+								  <option value="Pennsylvania">PA</option>
+								  <option value="Rhode Island">RI</option>
+								  <option value="South Carolina">SC</option>
+								  <option value="South Dakota">SD</option>
+								  <option value="Tennessee">TN</option>
+								  <option value="Texas">TX</option>
+								  <option value="Utah">UT</option>
+								  <option value="Vermont">VT</option>
+								  <option value="Virgina">VA</option>
+								  <option value="Washington">WA</option>
+								  <option value="West Virginia">WV</option>
+								  <option value="Wisconsin">WI</option>
+								  <option value="Wyoming">WY</option>
+								</select>
+								</div>
+								</span>
+                        </p>
+                    </div>
+                    <div  style = "display: inline-block">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.zip"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "zip-code">
+                            <span><form:input class="address-box" type="text"  path="zip" /></span>
+                        </p>
+                    </div>
+                    </span>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.county"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="country" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.officephone"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="officePhone" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.faxbox"/></span>
+                            <span class="required-asterisk">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="fax" /></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.federaltaxid"/> </span>
+                            <span class=""> # </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="federalTaxId" /></span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class=" float-left">
+                            <span><spring:theme code="account.website"/> </span>
+                            <span class="">  </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="website" /></span>
+                        </p>
+                    </div>
+                </span>
+                
+                <span class = "ship_to">
+                    <p style = "display: inline-block; margin-right: 20px"><b><spring:theme code="account.shipto"/></b></p>
+                         <label class="checked" style = "display: inline-block;"> <spring:theme code="account.shippingsame"/>
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+                    <div class="">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.name"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="pcName"/></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.address"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="stAddress" /></span>
+                        </p>
+                    </div>
+                    <span>
+                    <div style = "display: inline-block">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.citybox"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "city">
+                            <span><form:input class="address-box" type="text"  path="city" /></span>
+                        </p>
+                    </div>
+
+                    <div class="" style = "display: inline-block">
+                        <p class="cmpny-label" style = "display: inline-block">
+                            <span><spring:theme code="account.state"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "state">
+                            <span> 
+                            
+                            <div id="type_select" class="payment-profile-select custom-select hideExport" style = "display: inline-block">
+	                        	<select name="order_types" >
+	                        	<option value="All">Select...</option>
+	                        	  <option value="Alabama">AL</option>
+	                        	  <option value="Alaska">AK</option>
+								  <option value="Arizona">AZ</option>
+								  <option value="Arkansas">AR</option>
+								  <option value="California">CA</option>
+								  <option value="Colorado">CO</option>
+								  <option value="Connecticut">CT</option>
+								  <option value="Delaware">DE</option>
+								  <option value="Florida">FL</option>
+								  <option value="Georgia">GA</option>
+								  <option value="Hawaii">HI</option>
+								  <option value="Idaho">ID</option>
+								  <option value="Illinois">IL</option>
+								  <option value="Indiana">IN</option>
+								  <option value="Iowa">IA</option>
+								  <option value="Kansas">KS</option>
+								  <option value="Kentucky">KY</option>
+								  <option value="Louisiana">LA</option>
+								  <option value="Maine">ME</option>
+								  <option value="Maryland">MD</option>
+								  <option value="Massachussets">MA</option>
+								  <option value="Michigan">MI</option>
+								  <option value="Minnesota">MN</option>
+								  <option value="Mississippi">MS</option>
+								  <option value="Missouri">MO</option>
+								  <option value="Montana">MT</option>
+								  <option value="Nebraska">NE</option>
+								  <option value="Nevada">NV</option>
+								  <option value="New Hampshire">NH</option>
+								  <option value="New Jersey">NJ</option>
+								  <option value="New Mexico">NM</option>
+								  <option value="New York">NY</option>
+								  <option value="North Carolina">NC</option>
+								  <option value="North Dakota">ND</option>
+								  <option value="Ohio">OH</option>
+								  <option value="Oklahoma">OK</option>
+								  <option value="Oregon">OR</option>
+								  <option value="Pennsylvania">PA</option>
+								  <option value="Rhode Island">RI</option>
+								  <option value="South Carolina">SC</option>
+								  <option value="South Dakota">SD</option>
+								  <option value="Tennessee">TN</option>
+								  <option value="Texas">TX</option>
+								  <option value="Utah">UT</option>
+								  <option value="Vermont">VT</option>
+								  <option value="Virgina">VA</option>
+								  <option value="Washington">WA</option>
+								  <option value="West Virginia">WV</option>
+								  <option value="Wisconsin">WI</option>
+								  <option value="Wyoming">WY</option>
+								</select>
+								</div>
+								</span>
+                        </p>
+                    </div>
+                    <div  style = "display: inline-block">
+                        <p class=" float-left">
+                            <span><spring:theme code="account.zip"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "zip-code">
+                            <span><form:input class="address-box" type="text"  path="zip" /></span>
+                        </p>
+                    </div>
+                    </span>
+                    <div >
+                        <p class=" float-left">
+                            <span><spring:theme code="account.county"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right">
+                            <span><form:input class="long-box" type="text"  path="stCountry" /></span>
+                        </p>
+                    </div>
+                </span>
+            
+        </div>
+
+        <div class="creditApplication-packet fill-out-form">
+             <div class = "dividers">
+                    <p class="step-label"><spring:theme code="account.contactinformation"/></p>
+            </div>
+             <div style = "margin-top: 15px">
+                <span style = "margin-right: 20px"><spring:theme code="account.estimatedpurchases"/></span>
+                <span >
+                     <form:input class="long-box" type="text"  path="estimatedPurchases" />
+                </span>
+             </div>
+             <div style = "margin-top: 10px">
+             <span  class = "credit_form_1" style = "margin-right: 4%" >
+                 <div  >
+                     <p ><b><spring:theme code="account.primarycontact"/></b></p>
+                     <div>
+                         <p class=" float-left">
+                             <span><spring:theme code="account.name"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="pcName" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.phonebox"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="pcPhone" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.faxbox"/></span>
+                             <span class="required-asterisk">  </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="pcFax" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.email"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="pcEmail" /></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p >
+                             <span><spring:theme code="account.contactpreferences"/></span>
+                         </p>
+                         <p>
+                        
+                         <label class="checked"><spring:theme code="account.ordercommunications"/>
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+                         </p>
+                     </div>
+                 </div>
+                 </span>
+                 <span class = "credit_form_1" style = " margin-right: 4%">
+                 <div >
+                     <p >
+                       <span style = "margin-right: 10%"><b> <spring:theme code="account.apcontact"/> </b></span>
+                        <label class="checked"><spring:theme code="account.sameasprimary"/>
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+                     </p>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.name"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="apName" /></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class=" float-left">
+                             <span><spring:theme code="account.phonebox"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="apPhone" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.faxbox"/></span>
+                             <span class="required-asterisk">  </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="apFax" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.email"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="apEmail" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p >
+                             <span><spring:theme code="account.contactpreferences"/></span>
+                         </p>
+                         <p >
+                             <label class="checked"><spring:theme code="account.ordercommunications"/>
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+                         </p>
+                     </div>
+                 </div>
+                 </span>
+                 <span class = "credit_form_1">
+                 <div >
+                     <p >
+                       <span style = "margin-right: 10%"><b> <spring:theme code="account.salescontact"/> </b></span>
+                        <label class="checked"><spring:theme code="account.sameasprimary"/>
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+                     </p>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.name"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="scName" /></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class=" float-left">
+                             <span><spring:theme code="account.phonebox"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="scPhone" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.faxbox"/></span>
+                             <span class="required-asterisk">  </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="scFax" /></span>
+                         </p>
+                     </div>
+                    <div >
+                         <p class=" float-left">
+                             <span><spring:theme code="account.email"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class = "align-right">
+                             <span><form:input class="short-box" type="text"  path="scEmail" /></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p >
+                             <span><spring:theme code="account.contactpreferences"/></span>
+                         </p>
+                         <p>
+                             <label class="checked"><spring:theme code="account.ordercommunications"/>
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label>
+                         </p>
+                     </div>
+                 </div>
+                 </span>
+             </div>
+        </div>
+        </div>
+        <div class="button-grp">
+            <button class="back_button" type="submit"><spring:theme code="account.back"/></button>
+            <button class="next_button" type="submit" ><spring:theme code="account.continue"/></button>
+        </div>
+    </div>
+</div>
+<footer>
+ <div class = "align-footer">
+ <p class = "callaway_header"><spring:theme code="account.callaway.golf"/> </p>
+ <p class = "credit_email"><spring:theme code="account.creditemail"/> </p>
+ <br>
+ <p> <spring:theme code="account.road"/> <br>
+ <spring:theme code="account.city"/></p>
+ <br>
+ <span class = "icon-screen-smartphone" ></span>
+ <p class = "phone_numbers"><spring:theme code="account.phone"/></p>
+ <p > <spring:theme code="account.fax"/></p>
+ </div>
+</footer>
+</form:form>
