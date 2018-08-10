@@ -1,0 +1,696 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="formElement" tagdir="/WEB-INF/tags/responsive/formElement" %>
+<%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+<style>
+    
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("input").blur(function(){
+             var value= $('#'+this.id+'');
+             var errorSpan=$('#'+this.id+'Error');
+             if(!value.val()){
+                errorSpan.addClass("show");
+             }
+             else{
+                errorSpan.removeClass("show");
+             }
+          });
+        $("#shipToAddressCheckbox").click(function(){
+            $(".shipTocontainer").toggle();
+        });
+        $("#golfCourse").on("click",function() {
+             if(!$("#golfSpecialtyStore").is(':checked')){
+                $(".golfCourse").toggle(this.checked);
+                $(".proShop").toggle(this.checked);
+                $(".buildingFacility").toggle(this.checked);
+                $(".managementCompany").toggle(this.checked);
+                $(".otherGolfService").toggle(this.checked);
+             }
+          });
+           $("#drivingRange").on("click",function() {
+               if(!$("#golfSpecialtyStore").is(':checked'))
+                  $(".drivingRange").toggle(this.checked);
+           });
+          $("#golfSpecialtyStore").on("click",function() {
+            $(".drivingRange").toggle(this.checked);
+            $(".golfCourse").toggle(this.checked);
+            $(".proShop").toggle(this.checked);
+            $(".buildingFacility").toggle(this.checked);
+            $(".managementCompany").toggle(this.checked);
+            $(".otherGolfService").toggle(this.checked);
+            if($("#drivingRange").is(':checked') && !$("#golfSpecialtyStore").is(':checked')){
+             $(".drivingRange").toggle();
+           }
+           if($("#golfCourse").is(':checked') && !$("#golfSpecialtyStore").is(':checked')){
+            $(".golfCourse").toggle();
+            $(".proShop").toggle();
+            $(".buildingFacility").toggle();
+            $(".managementCompany").toggle();
+            $(".otherGolfService").toggle();
+           }
+          });
+
+          $("#numberOfOwner").blur(function(){
+            var numberOfOwner=($("#numberOfOwner").val());
+            for(var i=2;i<=4;i++){
+               ($(".owner"+i)).removeClass("show");
+            }
+            for(var i=1;i<=numberOfOwner;i++){
+               ($(".owner"+i)).addClass("show");
+            }
+          });
+
+          $('#nextBtn').click(function() {
+            console.log($("#myform").serializeArray());
+            var temp = JSON.stringify($('#myform').serializeArray());
+            temp = temp.replace(/"/g, '');
+            $('#ownerJson').val("123");
+
+            $('#name').val($("#owner1Name").val());
+            $('#address').val($("#owner1Address").val());
+            $('#city').val($("#owner1City").val());
+            $('#state').val($("#owner1State").val());
+            $('#zip').val($("#owner1Zip").val());
+
+            $('#noOfOwners').val($("#numberOfOwner").val());
+            $('#ownershipForm1').submit();
+          });
+    });
+
+</script>
+<c:url value="/creditapplicationsf/ownership" var="ownership" ></c:url>
+<form:form method="post" id="ownershipForm1" commandName="ownershipForm" action="${ownership}">
+<form:input class="" type="hidden"  path="applicationId" Value="${applicationId}"/>
+
+<nav class = "page_margin">
+
+<div id="FLEX">
+<span>
+<div class = "icon-screen-smartphone"> </div>
+<div class= " phone_credit"><spring:theme code="account.helpnumber"/></div></span>
+<span> <a href = "" style = "letter-spacing: 2px"><spring:theme code="account.logout"/></a></span>
+
+</div>
+
+ </nav>
+<img src="https://cgmediacontentus.blob.core.windows.net:443/email-notifications/Images/Callaway-Logo-bgWhite.png" style = "margin-left:auto; margin-right: auto; margin-bottom: 15px;  display: block"/> 
+<div class="breadcrumb-section">
+		<ol class="breadcrumb">
+	<li>
+		<a href=""><spring:theme code="account.home"/></a>
+	</li>
+
+	<li>
+					<a href=""><spring:theme code="account.creditapplication"/></a>
+				</li>
+			<li class="active"><spring:theme code="account.ownership"/></li>
+			</ol>
+</div>
+<div class = "page_margin">
+    <div class="creditApplication-container">
+        <div class="creditApplication-packet company-details">
+        
+        <div class="button-grp">
+            <button class="back_button" type="submit"><spring:theme code="account.back"/></button>
+            <button class="next_button" type="submit"><spring:theme code="account.continue"/></button>
+        </div>
+             <div class = "dividers">
+                    <p class="step-label" ><spring:theme code="account.businessentityandtype"/></p>
+            </div>
+        <div class="creditApplication-packet company-details">
+            <div >
+                <div class="shipTocontainer">
+                
+                 <div style = "display: inline-block">
+                       <p class="float-left">
+                            <span><spring:theme code="account.businessentity"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class = "align-right" style = "display: inline-block">
+                            <span> 
+                            
+                            <div id="type_select" class="payment-profile-select custom-select hideExport" style = "display: inline-block">
+	                        	<select name="order_types">
+	                        	  <option value="volvo">Select...</option>
+                                     <option value="volvo">Corporation</option>
+                                      <option value="saab">LLC</option>
+                                      <option value="mercedes">Muncipal</option>
+                                      <option value="audi">Individual</option>
+                                      <option value="audi">Member Owned</option>
+                                      <option value="audi">Other</option>
+								
+								</select>
+								</div>
+								</span>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <p class="float-left">
+                            <span><spring:theme code="account.typeofbusiness"/></span>
+                            <span class="required-asterisk"> * </span>
+                        </p>
+                        <p class="align-right">
+                        <span><label class="checked" style = "display: inline-block; margin-right: 10px"> Green Grass
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label></span>
+						<span><label class="checked" style = "display: inline-block; margin-right: 10px"> Off Course
+						  <input  type="checkbox">
+						  <span class="checkmark"></span>
+						</label></span>
+						<span><label class="checked" style = "display: inline-block; margin-right: 10px"> Management Accounts
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label></span>
+						<span><label class="checked" style = "display: inline-block; margin-right: 10px"> Co-Brand
+						  <input  type="checkbox">
+						  <span class="checkmark"></span>
+						</label></span>
+						<span><label class="checked" style = "display: inline-block; margin-right: 10px"> Lifestyle
+						  <input type="checkbox">
+						  <span class="checkmark"></span>
+						</label></span>
+						<span><label class="checked" style = "display: inline-block; "> Other
+						  <input  type="checkbox">
+						  <span class="checkmark"></span>
+						</label></span>
+                        </p>
+                    </div>
+                    <div >
+                        <p class="float-left">
+                            <span><spring:theme code="account.pleaseexplain"/></span>
+                            <span class="required-asterisk"> </span>
+                        </p>
+                        <p class="align-right">
+                            <span><input class = "long-box" id="stateShipToValue" type="text"></span>
+                        </p>
+                       
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="creditApplication-packet fill-out-form">
+             <div class = "dividers">
+                    <p class="step-label" ><spring:theme code="account.businesshistory"/></p>
+            </div>
+            <div style = "width: 80%">
+             <div>
+                <p style = "display: inline-block"><spring:theme code="account.numberofyears"/></p>
+                <span style = "display: inline-block" style = "right: 0">
+                     <input  type="text" value="1" class = "short-box">
+                </span>
+             </div>
+             <div >
+                       <p class = "float-left" style = "display: inline-block"><spring:theme code="account.financiallyresponsible"/></p>
+                        <p class = "align-right" style = "display: inline-block">
+                            <span> 
+                            
+                            <div id="type_select" class="payment-profile-select custom-select hideExport" style = "display: inline-block">
+	                        	<select name="choice" >
+	                        	<option value="Select">Select...</option>
+	                        	<option value="No">No</option>
+                         		<option value="Yes">Yes</option>
+								
+								</select>
+								</div>
+								</span>
+                        </p>
+                    </div>
+             </div>
+             <div style = "width: 60%; margin-bottom: 20px">
+                <span>
+                    <b><spring:theme code="account.previousexperience"/></b>
+                </span>
+             </div>
+             <div style = "width: 60%">
+                 <div >
+                     <p class="float-left">
+                         <span><spring:theme code="account.position"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+                 <div class="">
+                     <p class="float-left">
+                         <span><spring:theme code="account.callawayaccountnumber"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+                 <div class="">
+                     <p class="float-left">
+                         <span><spring:theme code="account.clubname"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+                 <div class="">
+                     <p class="float-left">
+                         <span><spring:theme code="account.citybox"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+                 <div class="">
+                     <p class="float-left">
+                         <span><spring:theme code="account.state"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+                 <div class="">
+                     <p class="float-left">
+                         <span><spring:theme code="account.zip"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+                 <div class="">
+                     <p class="float-left">
+                         <span><spring:theme code="account.phonebox"/></span>
+                         <span class="required-asterisk">  </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input class = "long-box" type="text"></span>
+                     </p>
+                 </div>
+             </div>
+             </div>
+        </div>
+        <form:input class="" id="ownerJson" type="hidden"  path="ownerJson" />
+        <form:input class="" id="noOfOwners" type="hidden"  path="noOfOwners" />
+        <form:input class="" id="businessEntity" type="hidden"  path="businessEntity" value="abc"/>
+        <form:input class="" id="businessType" type="hidden"  path="businessType" value="abc"/>
+        <form:input class="" id="explaination" type="hidden"  path="explaination" value="abc" />
+        <form:input class="" id="noOfYears" type="hidden"  path="noOfYears" value="4" />
+        <form:input class="" id="prevFinancialFlag" type="hidden"  path="prevFinancialFlag" value="abc"/>
+        <form:input class="" id="prevExpPosition" type="hidden"  path="prevExpPosition" value="abc"/>
+        <form:input class="" id="callawayAccount" type="hidden"  path="callawayAccount" value="abc"/>
+        <form:input class="" id="city" type="hidden"  path="city" value="city"/>
+        <form:input class="" id="state" type="hidden"  path="state" value="state" />
+        <form:input class="" id="zip" type="hidden"  path="zip" value="zip"/>
+        <form:input class="" id="phone" type="hidden"  path="phone" value="phone"/>
+        <form:input class="" id="name" type="hidden"  path="name" value="phone"/>
+        <form:input class="" id="address" type="hidden"  path="address" value="phone"/>
+        </form:form>
+        <form id="myform" action="" method="post">
+        <div class="">
+        <div class = "dividers">
+                    <p class="step-label" ><spring:theme code="account.ownershippanel"/></p>
+            </div>
+            <div  style = "width: 60%">
+             <div style = "margin-bottom: 20px">
+                <span>
+                    <b><spring:theme code="account.principalowners"/></b>
+                </span>
+             </div>
+             <div >
+                 <div>
+                     <p class="float-left">
+                         <span><spring:theme code="account.numberofowners"/></span>
+                         <span class="required-asterisk"> * </span>
+                     </p>
+                     <p class="align-right">
+                         <span><input id="numberOfOwner" class = "short-box" name="numberOfOwner" type="number" min="1" max="4" value="1"></span>
+                     </p>
+                 </div>
+                 <div class="owner1">
+                     <div style = "margin-bottom: 20px">
+                        <p>
+                            <span ><b><spring:theme code="account.ownerone"/></b></span>
+                        </p>
+                     </div >
+                     
+                     <div>
+                     <div>
+                         <p class="float-left">
+                             <span><spring:theme code="account.percentofbusiness"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1PercentageOwned" name="owner1PercentageOwned" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span><spring:theme code="account.nameofprincipal"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1Name"  name="owner1Name" type="text"></span>
+                         </p>
+                        
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span><spring:theme code="account.residentialaddress"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1Address" name="owner1Address" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span><spring:theme code="account.citybox"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1City" name="owner1City" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span><spring:theme code="account.state"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1State" name="owner1State" type="text"></span>
+                         </p>
+                         <!-- <p class="col-xs-1">
+                             <span id="owner1StateError" class="error hide">i</span>
+                         </p> -->
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span><spring:theme code="account.zip"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1Zip" name="owner1Zip" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span><spring:theme code="account.homephone"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1Phone" name="owner1Phone" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span><spring:theme code="account.cellphone"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner1Phone" name="owner1Phone" type="text"></span>
+                         </p>
+                     </div>
+                 </div>
+                 <div class="hide owner2" style="display:none;">
+                     <div>
+                        <p>
+                            <span><b><spring:theme code="account.ownertwo"/></b></span>
+                        </p>
+                     </div>
+                      <div>
+                         <p class="float-left">
+                             <span><spring:theme code="account.percentofbusiness"/></span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2PercentageOwned" name="owner2PercentageOwned" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>Name of Principal:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2Name"  name="owner2Name" type="text"></span>
+                         </p>
+                        
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Residential Address:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2Address" name="owner2Address" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>City:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2City" name="owner2City" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>State</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2State" name="owner2State" type="text"></span>
+                         </p>
+                         <!-- <p class="col-xs-1">
+                             <span id="owner1StateError" class="error hide">i</span>
+                         </p> -->
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>Zip</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2Zip" name="owner2Zip" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Home Phone</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2Phone" name="owner2Phone" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Cell Phone:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner2Phone" name="owner2Phone" type="text"></span>
+                         </p>
+                     </div>
+                 </div>
+                 <div class="hide owner3" style="display:none;">
+                     <div class="row">
+                        <p>
+                            <span><b>OWNER 3</b></span>
+                        </p>
+                     </div>
+                      <div>
+                         <p class="float-left">
+                             <span>% of Business Owned:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3PercentageOwned" name="owner3PercentageOwned" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>Name of Principal:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3Name"  name="owner3Name" type="text"></span>
+                         </p>
+                        
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Residential Address:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3Address" name="owner3Address" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>City:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3City" name="owner3City" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>State</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3State" name="owner3State" type="text"></span>
+                         </p>
+                         <!-- <p class="col-xs-1">
+                             <span id="owner1StateError" class="error hide">i</span>
+                         </p> -->
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>Zip</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3Zip" name="owner3Zip" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Home Phone</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3Phone" name="owner3Phone" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Cell Phone:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner3Phone" name="owner3Phone" type="text"></span>
+                         </p>
+                     </div>
+                 </div>
+                 <div class="hide owner4" style="display:none;">
+                     <div class="row">
+                        <p>
+                            <span ><b>OWNER 4</b></span>
+                        </p>
+                     </div>
+                  <div>
+                         <p class="float-left">
+                             <span>% of Business Owned:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4PercentageOwned" name="owner4PercentageOwned" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>Name of Principal:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4Name"  name="owner4Name" type="text"></span>
+                         </p>
+                        
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Residential Address:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4Address" name="owner4Address" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>City:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4City" name="owner4City" type="text"></span>
+                         </p>
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>State</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4State" name="owner4State" type="text"></span>
+                         </p>
+                         <!-- <p class="col-xs-1">
+                             <span id="owner1StateError" class="error hide">i</span>
+                         </p> -->
+                     </div>
+                     <div >
+                         <p class="float-left">
+                             <span>Zip</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4Zip" name="owner4Zip" type="text"></span>
+                         </p>
+                     </div>
+                     <div>
+                         <p class="float-left">
+                             <span>Home Phone</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4Phone" name="owner4Phone" type="text"></span>
+                         </p>
+                     </div>
+                     
+                     <div>
+                         <p class="float-left">
+                             <span>Cell Phone:</span>
+                             <span class="required-asterisk"> * </span>
+                         </p>
+                         <p class="align-right">
+                             <span><input class = "long-box" id="owner4Phone" name="owner4Phone" type="text"></span>
+                         </p>
+                     </div>
+                     </div>
+             </div>
+        </div>
+        </div>
+		 <div class="button-grp">
+            <button class="back_button" type="submit">Back</button>
+            <button class="next_button" type="submit">Continue</button>
+        </div>
+        
+        </div>
+        </div>
+  <footer>
+ <div class = "align-footer">
+ <p class = "callaway_header"> CALLAWAY GOLF </p>
+ <p class = "credit_email">credit.application@callawaygolf.com </p>
+ <br>
+ <p> 2180 Rutherford Road <br>
+ Carlsbad, CA 92008 USA 1.800.588.9836 </p>
+ <br>
+ <span class = "icon-screen-smartphone" ></span>
+ <p class = "phone_numbers">760-931-1771 or 800-228-2767</p>
+ <p >Fax: 760-804-4292 </p>
+ </div>
+</footer>
+        </form>
